@@ -1,0 +1,17 @@
+{
+  "name": "social-media-generator",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "node screenshot-all.mjs",
+    "build:one": "node screenshot-one.mjs",
+    "preview": "node preview.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "playwright": "^1.58.2"
+  }
+}

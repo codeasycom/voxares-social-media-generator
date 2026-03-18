@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080, height=1080">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1080px;
+    height: 1080px;
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .top-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, #ef4444, #0096ff);
+    z-index: 10;
+  }
+  .logo {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 10;
+    background: white;
+    padding: 8px 20px;
+    border-radius: 50px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  }
+  .logo svg { width: 32px; height: 29px; }
+  .logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0096ff;
+  }
+  /* Split layout */
+  .split {
+    display: flex;
+    flex: 1;
+    padding-top: 6px;
+  }
+  .side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px 44px 130px;
+  }
+  .side-before {
+    background: #f5f5f5;
+  }
+  .side-after {
+    background: #f0f7ff;
+  }
+  .divider-line {
+    width: 3px;
+    background: #e5e7eb;
+    position: relative;
+  }
+  .divider-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #e5e7eb;
+    color: #6b7280;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 8px 4px;
+    border-radius: 4px;
+    writing-mode: vertical-lr;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .side-label {
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 14px;
+    margin-top: 20px;
+  }
+  .side-before .side-label { color: #dc2626; }
+  .side-after .side-label { color: #0096ff; }
+  .side-title {
+    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+    font-size: 34px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .side-before .side-title { color: #374151; }
+  .side-after .side-title { color: #1a1a2e; }
+  .items {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 22px;
+    border-radius: 14px;
+  }
+  /* Before side - all red */
+  .side-before .item {
+    background: white;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+  }
+  .item-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .item-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+  .side-before .item-icon { background: linear-gradient(135deg, #ef4444, #dc2626); }
+  .item-content {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .item-title {
+    font-size: 19px;
+    font-weight: 700;
+  }
+  .side-before .item-title { color: #374151; }
+  .item-desc {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+  .side-before .item-desc { color: #6b7280; }
+  /* Bottom stat */
+  .stat-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 24px;
+    background: linear-gradient(135deg, #0096ff, #0070c0);
+  }
+  .stat-bar span {
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+  <div class="top-bar"></div>
+
+  <div class="logo">
+    <svg viewBox="0 0 241 217" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M124.674 50.7719C132.352 -4.85867 186.107 -2.36275 199.501 2.10196C208.828 5.21142 228.027 22.4676 239.96 34.0941C241.407 35.504 239.929 38.6282 237.939 38.9789C221.05 41.956 200.329 65.5677 206.001 75.602C226.147 111.245 211.043 146 199.501 163.602C186.689 183.14 149.656 219.881 101.001 216.694C99.0806 216.568 98.6299 214.037 100.284 213.054C197.366 155.341 164.45 76.6977 125.613 52.7709C124.934 52.3529 124.565 51.5614 124.674 50.7719ZM189.001 12.9994C183.478 12.9994 179.001 17.4767 179.001 22.9994C179.001 28.5223 183.478 32.9994 189.001 32.9994C194.523 32.9993 199.001 28.5222 199.001 22.9994C199.001 17.4768 194.523 12.9996 189.001 12.9994Z" fill="url(#g1)"/>
+      <path d="M150.489 134.235C151.569 133.068 153.387 133.589 153.296 135.176C152.112 155.594 111.785 204.326 74.3757 214.4C74.1257 214.467 73.8629 214.482 73.6062 214.448C55.8624 212.099 48.2225 210.13 37.74 199.768C36.8343 198.873 37.0236 197.368 38.114 196.71C60.0892 183.454 69.615 182.599 90.5007 173.999C115.296 163.789 121.655 165.399 150.489 134.235Z" fill="url(#g1)"/>
+      <path d="M22.5095 128.7C21.9966 127.271 23.298 125.932 24.782 126.251C60.1523 133.871 108.831 129.388 137.567 129.023C139.102 129.003 140.023 130.634 139.115 131.872C132.007 141.563 111.999 159.197 71.0007 160.999C38.1197 160.999 26.167 138.887 22.5095 128.7Z" fill="url(#g1)"/>
+      <path d="M3.46751 72.4076C3.14567 70.5548 5.29606 68.7498 6.98313 69.5805C45.601 88.608 95.9286 91.7024 146.344 97.3695C147.059 97.4498 147.682 97.9078 147.935 98.5805C150.099 104.34 148.896 107.939 147.812 113.35C147.622 114.301 146.785 114.999 145.815 115C96.1347 115.053 57.8952 117.415 48.5007 114.999C2.42683 103.152 5.81481 85.9129 3.46751 72.4076Z" fill="url(#g1)"/>
+      <path d="M0.0456338 9.77676C0.0886391 8.42212 1.4571 7.50078 2.70579 8.02774C20.7782 15.6545 47.7893 32.7004 66.6755 39.4994C90.1538 47.9517 134.357 70.5157 140.48 81.9281C141.038 82.9674 140.168 83.9858 138.992 83.8988C124.801 82.8482 71.2156 73.8816 58.6755 71.9994C47.0024 70.2474 -1.6974 64.6855 0.0456338 9.77676Z" fill="url(#g1)"/>
+      <defs><linearGradient id="g1" x1="120" y1="0" x2="120" y2="217" gradientUnits="userSpaceOnUse"><stop stop-color="#0096FF"/><stop offset="1" stop-color="#0084E1"/></linearGradient></defs>
+    </svg>
+    <span class="logo-text">Voxares</span>
+  </div>
+
+  <div class="split">
+    <div class="side side-before">
+      <div class="side-label">Prije Voxaresa</div>
+      <div class="side-title">Puno ručnog posla</div>
+      <div class="items">
+        <!-- Row 1: Communication -->
+        <div class="item">
+          <div class="item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div class="item-content">
+            <div class="item-title">Svaka poruka ispočetka</div>
+            <div class="item-desc">Iste poruke svim klijentima</div>
+          </div>
+        </div>
+        <!-- Row 2: No-shows -->
+        <div class="item">
+          <div class="item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          </div>
+          <div class="item-content">
+            <div class="item-title">Prazni termini</div>
+            <div class="item-desc">Klijenti zaborave i ne pojave se</div>
+          </div>
+        </div>
+        <!-- Row 3: Paperwork -->
+        <div class="item">
+          <div class="item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <div class="item-content">
+            <div class="item-title">Papiri i ručni unos</div>
+            <div class="item-desc">Administracija koja oduzima vrijeme</div>
+          </div>
+        </div>
+        <!-- Row 4: Lost clients -->
+        <div class="item">
+          <div class="item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="18" y1="8" x2="23" y2="13"/><line x1="23" y1="8" x2="18" y2="13"/></svg>
+          </div>
+          <div class="item-content">
+            <div class="item-title">Izgubljeni klijenti</div>
+            <div class="item-desc">Tko prestane dolaziti ostane zaboravljen</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-line">
+      <div class="divider-label">VS</div>
+    </div>
+
+    <div class="side side-after">
+      <div class="side-label">Poslije</div>
+      <div class="side-title">Voxares radi umjesto vas</div>
+      <div class="items">
+        <!-- Row 1: Blue - Personalized communication -->
+        <div class="item" style="background: white; border: 1px solid #e5e7eb;">
+          <div class="item-icon" style="background: linear-gradient(135deg, #0096ff, #007ad1);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div class="item-content">
+            <div class="item-title" style="color: #1a1a2e;">Personalizirana komunikacija</div>
+            <div class="item-desc" style="color: #6b7280;">Prava poruka u pravo vrijeme</div>
+          </div>
+        </div>
+        <!-- Row 2: Green - Automated reminders -->
+        <div class="item" style="background: white; border: 1px solid #e5e7eb;">
+          <div class="item-icon" style="background: linear-gradient(135deg, #34d399, #10b981);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          </div>
+          <div class="item-content">
+            <div class="item-title" style="color: #1a1a2e;">Automatski podsjetnici</div>
+            <div class="item-desc" style="color: #6b7280;">Uvijek znate tko dolazi a tko ne</div>
+          </div>
+        </div>
+        <!-- Row 3: Amber - Digital forms -->
+        <div class="item" style="background: white; border: 1px solid #e5e7eb;">
+          <div class="item-icon" style="background: linear-gradient(135deg, #fbbf24, #f59e0b);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <div class="item-content">
+            <div class="item-title" style="color: #1a1a2e;">Digitalni obrasci</div>
+            <div class="item-desc" style="color: #6b7280;">Klijenti sve ispune prije dolaska</div>
+          </div>
+        </div>
+        <!-- Row 4: Purple - Targeted campaigns -->
+        <div class="item" style="background: white; border: 1px solid #e5e7eb;">
+          <div class="item-icon" style="background: linear-gradient(135deg, #a78bfa, #8b5cf6);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          </div>
+          <div class="item-content">
+            <div class="item-title" style="color: #1a1a2e;">Ciljane kampanje</div>
+            <div class="item-desc" style="color: #6b7280;">Vratite klijente pravom porukom</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stat-bar">
+    <span>Manje ručnog posla. Više vremena za ono što je važno.</span>
+  </div>
+</body>
+</html>
