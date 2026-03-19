@@ -1,0 +1,3 @@
+Kad netko zakaže termin preko Google Kalendara ili vam pošalje potvrdu e-mailom, klijent se automatski pojavi u Voxaresu. Ne trebate ništa ručno unositi, podaci su već tamo kad otvorite aplikaciju.
+
+#voxares #crm #googlecalendar #gmail #sinkronizacija #klijenti #digitalizacija
