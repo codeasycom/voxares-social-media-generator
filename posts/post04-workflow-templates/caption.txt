@@ -1,0 +1,3 @@
+Jedan predložak, a svaki klijent dobiva poruku s vlastitim imenom i vremenom termina. Ne trebate pisati svaku poruku posebno, samo postavite predložak i Voxares ga popuni za svakog klijenta.
+
+#voxares #crm #sms #komunikacija #klijenti #predlošci #automatizacija

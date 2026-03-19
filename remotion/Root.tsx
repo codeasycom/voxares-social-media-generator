@@ -8,6 +8,10 @@ import {
   compositionConfig as post03Config,
 } from "../posts/post03-platform-overview/video";
 import {
+  Post04WorkflowTemplates,
+  compositionConfig as post04Config,
+} from "../posts/post04-workflow-templates/video";
+import {
   Post05BeforeAfter,
   compositionConfig as post05Config,
 } from "../posts/post05-before-after/video";
@@ -30,6 +34,14 @@ export const Root: React.FC = () => {
         fps={post03Config.fps}
         width={post03Config.width}
         height={post03Config.height}
+      />
+      <Composition
+        id="Post04WorkflowTemplates"
+        component={Post04WorkflowTemplates}
+        durationInFrames={post04Config.durationInFrames}
+        fps={post04Config.fps}
+        width={post04Config.width}
+        height={post04Config.height}
       />
       <Composition
         id="Post05BeforeAfter"

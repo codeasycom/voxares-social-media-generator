@@ -32,6 +32,7 @@ if (animatedPosts.length === 0) {
 const compositionIds = {
   "post02-morning-routine": "Post02MorningRoutine",
   "post03-platform-overview": "Post03PlatformOverview",
+  "post04-workflow-templates": "Post04WorkflowTemplates",
   "post05-before-after": "Post05BeforeAfter",
 };
 
