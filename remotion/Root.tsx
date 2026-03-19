@@ -1,5 +1,9 @@
 import { Composition } from "remotion";
 import {
+  Post02MorningRoutine,
+  compositionConfig as post02Config,
+} from "../posts/post02-morning-routine/video";
+import {
   Post03PlatformOverview,
   compositionConfig as post03Config,
 } from "../posts/post03-platform-overview/video";
@@ -11,6 +15,14 @@ import {
 export const Root: React.FC = () => {
   return (
     <>
+      <Composition
+        id="Post02MorningRoutine"
+        component={Post02MorningRoutine}
+        durationInFrames={post02Config.durationInFrames}
+        fps={post02Config.fps}
+        width={post02Config.width}
+        height={post02Config.height}
+      />
       <Composition
         id="Post03PlatformOverview"
         component={Post03PlatformOverview}

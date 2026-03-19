@@ -30,6 +30,7 @@ if (animatedPosts.length === 0) {
 
 // Known composition ID overrides (slug → composition ID)
 const compositionIds = {
+  "post02-morning-routine": "Post02MorningRoutine",
   "post03-platform-overview": "Post03PlatformOverview",
   "post05-before-after": "Post05BeforeAfter",
 };
