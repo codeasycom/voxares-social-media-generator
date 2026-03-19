@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react";
 import { readFile } from "fs/promises";
 import { resolve } from "path";
 import { fileURLToPath } from "url";
-import { spawn } from "child_process";
+import { spawn, exec } from "child_process";
 
 const rootDir = fileURLToPath(new URL(".", import.meta.url));
 
@@ -20,6 +20,23 @@ export default defineConfig({
             const posts = await getPosts();
             res.setHeader("Content-Type", "application/json");
             res.end(JSON.stringify(posts));
+            return;
+          }
+
+          // Open post folder in Finder
+          const openMatch = req.url?.match(/^\/api\/open\/([^/]+)$/);
+          if (openMatch && req.method === "POST") {
+            const slug = decodeURIComponent(openMatch[1]);
+            const folderPath = resolve(rootDir, "posts", slug);
+            exec(`open "${folderPath}"`, (err) => {
+              res.setHeader("Content-Type", "application/json");
+              if (err) {
+                res.statusCode = 500;
+                res.end(JSON.stringify({ ok: false }));
+              } else {
+                res.end(JSON.stringify({ ok: true }));
+              }
+            });
             return;
           }
 

@@ -186,26 +186,33 @@ a.card:hover {
   white-space: pre-line;
 }
 
-.studio-link {
+.post-links {
   width: 100%;
   max-width: 640px;
   margin-top: 12px;
-  text-align: center;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
 }
 
-.studio-link a {
+.post-links a,
+.post-links .link-btn {
   display: inline-block;
   padding: 8px 20px;
   background: #fff;
   color: #0096ff;
+  border: none;
   border-radius: 8px;
+  font-family: Inter, system-ui, sans-serif;
   font-size: 13px;
   font-weight: 600;
   text-decoration: none;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
 }
 
-.studio-link a:hover {
+.post-links a:hover,
+.post-links .link-btn:hover {
   background: #f0f7ff;
 }
 
@@ -255,6 +262,7 @@ a.card:hover {
   background: #ef4444;
   color: #fff;
 }
+
 
 .render-output {
   width: 100%;

@@ -126,7 +126,7 @@ export const PostView: React.FC<{ slug: string }> = ({ slug }) => {
               style={{ width: "100%" }}
             />
           </div>
-          <div className="studio-link">
+          <div className="post-links">
             <a
               href={`http://localhost:3031`}
               target="_blank"
@@ -134,20 +134,34 @@ export const PostView: React.FC<{ slug: string }> = ({ slug }) => {
             >
               Open in Remotion Studio &rarr;
             </a>
+            <button
+              className="link-btn"
+              onClick={() => fetch(`/api/open/${slug}`, { method: "POST" })}
+            >
+              Open Folder
+            </button>
           </div>
         </>
       ) : (
-        <div className="post-frame" ref={frameRef}>
-          <iframe
-            ref={iframeRef}
-            src={`/posts/${slug}/post.html`}
-            width={1080}
-            height={1080}
-          />
-        </div>
+        <>
+          <div className="post-frame" ref={frameRef}>
+            <iframe
+              ref={iframeRef}
+              src={`/posts/${slug}/post.html`}
+              width={1080}
+              height={1080}
+            />
+          </div>
+          <div className="post-links">
+            <button
+              className="link-btn"
+              onClick={() => fetch(`/api/open/${slug}`, { method: "POST" })}
+            >
+              Open Folder
+            </button>
+          </div>
+        </>
       )}
-
-      {/* Render buttons */}
       <div className="render-actions">
         <button
           className={`render-btn ${imageStatus}`}
