@@ -30,7 +30,8 @@ if (animatedPosts.length === 0) {
 
 // Known composition ID overrides (slug → composition ID)
 const compositionIds = {
-  "post02-before-after": "Post02BeforeAfter",
+  "post03-platform-overview": "Post03PlatformOverview",
+  "post05-before-after": "Post05BeforeAfter",
 };
 
 function slugToCompositionId(slug) {

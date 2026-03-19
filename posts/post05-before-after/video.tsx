@@ -242,7 +242,7 @@ const FRAMES = {
   statBar: 240, // 8.0s
 };
 
-const Post02BeforeAfter: React.FC = () => {
+const Post05BeforeAfter: React.FC = () => {
   return (
     <AbsoluteFill
       style={{
@@ -358,5 +358,5 @@ const Post02BeforeAfter: React.FC = () => {
   );
 };
 
-export { Post02BeforeAfter };
-export default Post02BeforeAfter;
+export { Post05BeforeAfter };
+export default Post05BeforeAfter;
