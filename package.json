@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "dev": "node dev.mjs",
+    "preview": "vite --port 3030",
     "build": "node screenshot-all.mjs",
     "build:one": "node screenshot-one.mjs",
-    "preview": "node preview.mjs"
+    "build:video": "node render-video.mjs",
+    "build:all": "npm run build && npm run build:video",
+    "studio": "remotion studio remotion/index.ts"
   },
   "keywords": [],
   "author": "",
@@ -13,5 +17,19 @@
   "description": "",
   "dependencies": {
     "playwright": "^1.58.2"
+  },
+  "devDependencies": {
+    "@remotion/bundler": "^4.0.0",
+    "@remotion/cli": "^4.0.0",
+    "@remotion/google-fonts": "^4.0.0",
+    "@remotion/player": "^4.0.436",
+    "@remotion/renderer": "^4.0.0",
+    "@types/react": "^18.3.0",
+    "@vitejs/plugin-react": "^4.7.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "^4.0.0",
+    "typescript": "^5.7.0",
+    "vite": "^6.4.1"
   }
 }

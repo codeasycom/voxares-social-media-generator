@@ -2,22 +2,29 @@
 
 ## What This Is
 
-A reusable tool for generating social media post images (Instagram, Facebook). Each post is a self-contained folder with its HTML source, caption, and generated image.
+A reusable tool for generating social media post images and animated videos (Instagram, Facebook). Each post is a self-contained folder with its content source, caption, and generated output.
 
 ## Tech Stack
 
-- **HTML/CSS** — each post is a single `.html` file with inline styles, no build step
-- **Playwright** — headless Chromium screenshots via `screenshot-all.mjs`
-- **Google Fonts** — Inter (weights: 400, 600, 700, 800) loaded from CDN
+- **HTML/CSS** — static posts are single `.html` files with inline styles
+- **Remotion + React** — animated posts are `.tsx` compositions with motion graphics
+- **Vite + React** — unified preview app with `@remotion/player` for in-browser playback
+- **Playwright** — headless Chromium screenshots for static posts
+- **Google Fonts** — Inter (400, 600, 700, 800), Plus Jakarta Sans (700, 800)
 - **Node.js** — ESM modules (`.mjs`)
 
 ## Commands
 
 ```bash
-npm install                  # install playwright (first time only)
+npm install                  # install dependencies (first time only)
 npx playwright install       # install chromium browser (first time only)
-npm run build                # generate all image.png files in each post folder
-npm run preview              # start live preview server at localhost:3030
+npm run preview              # Vite dev server at localhost:3030 (preview app)
+npm run dev                  # preview (3030) + Remotion Studio (3000) together
+npm run studio               # Remotion Studio only at localhost:3000
+npm run build                # screenshot static posts (skips animated)
+npm run build:one <slug>     # screenshot a single static post
+npm run build:video          # render animated posts (video.mp4 + image.png)
+npm run build:all            # build + build:video (everything)
 ```
 
 ## File Structure
@@ -25,29 +32,77 @@ npm run preview              # start live preview server at localhost:3030
 ```
 posts/                        # Each post is a self-contained folder
   post01-announcement/
-    post.html                 # Source (1080x1080 HTML)
+    post.html                 # Static post source (1080x1080 HTML)
     caption.txt               # Instagram caption
-    image.png                 # Generated screenshot (2160x2160, gitignored)
+    image.png                 # Generated screenshot (gitignored)
   post02-before-after/
-    post.html
+    video.tsx                 # Animated post source (Remotion composition)
     caption.txt
-    image.png
+    video.mp4                 # Generated video (gitignored)
+    image.png                 # Generated last-frame still (gitignored)
   ...
 assets/                       # Screenshots and images used by posts
   screenshot-*.png
 context/                      # Product context for content generation
   product-context.md          # Template — fill in for new projects
   voxares.md                  # Active product context (always read this)
-screenshot-all.mjs            # Build script: generates image.png in each post folder
-preview.mjs                   # Live preview server with gallery + detail views
+remotion/                     # Shared Remotion components and config
+  Root.tsx                    # Composition registry
+  index.ts                   # Remotion entry point
+  components/                # Reusable animated components
+  lib/                       # Colors, fonts
+src/                          # Preview app (Vite + React)
+  main.tsx
+  App.tsx                    # Hash-based routing
+  App.css
+  pages/
+    Gallery.tsx              # Grid of all posts
+    PostView.tsx             # Detail view with Player or iframe
+  components/
+    StaticCard.tsx           # Gallery card for static posts
+    AnimatedCard.tsx         # Gallery card for animated posts (Thumbnail)
+lib/
+  posts.mjs                  # Shared post-detection utility
+index.html                    # Vite entry HTML
+vite.config.ts                # Vite + React plugin + /api/posts middleware
+dev.mjs                       # Concurrent launcher (Vite + Studio)
+screenshot-all.mjs            # Build: screenshots for static posts
+screenshot-one.mjs            # Build: single static post screenshot
+render-video.mjs              # Build: video.mp4 + image.png for animated posts
 package.json
 ```
+
+## Post Types
+
+### Static Posts
+- Content source: `post.html`
+- Preview: rendered via iframe
+- Build: Playwright screenshot → `image.png`
+
+### Animated Posts
+- Content source: `video.tsx` (Remotion composition)
+- Preview: `@remotion/player` with playback controls
+- Build: Remotion render → `video.mp4` + last-frame still → `image.png`
+- `video.tsx` takes priority if both `post.html` and `video.tsx` exist
+
+### Post type detection
+- `video.tsx` present → animated
+- `post.html` only → static
+- Both → animated (`video.tsx` takes priority)
 
 ## Naming Convention
 
 Post folders: `post{NN}-{slug}/` where NN is the publishing order and slug describes the content.
 
-Each folder always contains `post.html` and `caption.txt`. The `image.png` is generated by the build script.
+Each folder contains `post.html` (static) or `video.tsx` (animated) plus `caption.txt`. Output files (`image.png`, `video.mp4`) are generated by build scripts.
+
+### Composition naming convention
+Each `video.tsx` must export:
+- `default` — the React component
+- Named export (e.g. `Post02BeforeAfter`) — same component, for Remotion registry
+- `compositionConfig` — `{ fps, durationInFrames, width, height }`
+
+Composition IDs in `remotion/Root.tsx` should match the named export.
 
 ## Post Templates
 
@@ -68,9 +123,9 @@ Layout: Light bg (`#f2f8fd`), blue accent bar top, Voxares logo top-left, large 
 Screenshot images are referenced as `../../assets/screenshot-*.png` (relative path from post folder to `assets/`).
 
 ### 3. Split / Infographic (complex layouts)
-**Used by:** post02 (before/after), post10 (4-step how-it-works)
+**Used by:** post02 (before/after — animated), post10 (4-step how-it-works)
 
-Custom layouts — no shared template.
+Custom layouts. Post02 uses Remotion animation with `remotion/components/` building blocks.
 
 ## Brand Guidelines
 
@@ -112,6 +167,7 @@ The Voxares logo SVG (bird icon) is inlined in each HTML file. Two versions:
 
 ## How to Add a New Post
 
+### Static post
 1. Read `context/voxares.md` for product context, tone, and content rules
 2. Create a new folder: `posts/post{NN}-{slug}/`
 3. Copy `post.html` from the closest template post
@@ -119,12 +175,26 @@ The Voxares logo SVG (bird icon) is inlined in each HTML file. Two versions:
 5. Write the caption in `caption.txt`
 6. Do NOT run `npm run build` — the user builds and verifies manually
 
-## Preview Server
+### Animated post
+1. Read `context/voxares.md` for product context and tone
+2. Create a new folder: `posts/post{NN}-{slug}/`
+3. Create `video.tsx` with a default export and `compositionConfig`
+4. Register the composition in `remotion/Root.tsx`
+5. Write the caption in `caption.txt`
+6. Do NOT run `npm run build:video` — the user builds and verifies manually
 
-`npm run preview` starts a local server at `http://localhost:3030` with:
-- **Gallery view** (`/`) — all posts in a grid, click to open
-- **Detail view** (`/view/post01-announcement`) — full-size post with caption, prev/next nav
-- **Live reload** — auto-refreshes when you edit any HTML, caption, or asset file
+## Preview App
+
+`npm run preview` starts the Vite dev server at `http://localhost:3030`:
+- **Gallery view** (`#/`) — all posts in a grid
+  - Static posts: scaled iframe of `post.html`
+  - Animated posts: Remotion Thumbnail (last frame) + VIDEO badge
+- **Detail view** (`#/view/post01-announcement`) — full-size view with caption, prev/next nav
+  - Static posts: full-size iframe
+  - Animated posts: `@remotion/player` with playback controls + "Open in Studio" link
+- **HMR** — changes to `video.tsx` or React components update instantly via Vite
+
+`npm run dev` starts both the preview app (3030) and Remotion Studio (3000).
 
 ## Product Context
 
@@ -135,7 +205,7 @@ Always read `context/voxares.md` before writing or editing any post content. It 
 1. Read `context/voxares.md` for product context and tone
 2. Create or edit post folders in `posts/` using the templates
 3. Write captions in each folder's `caption.txt`
-4. Do NOT run `npm run build` for verification. The user will build and verify manually.
+4. Do NOT run build scripts for verification. The user will build and verify manually.
 
 ## Content Strategy
 
