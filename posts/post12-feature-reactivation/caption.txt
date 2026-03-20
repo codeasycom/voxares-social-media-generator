@@ -1,7 +1,5 @@
 Klijent se nije javio 6 mjeseci? Voxares to automatski prepoznaje.
 
-Kreirajte grupu neaktivnih klijenata, napišite personaliziranu poruku i pošaljite je svima odjednom.
-
-Rezultat? Klijenti se vraćaju, a vi niste morali zvati nikog.
+Kreirajte grupu neaktivnih klijenata, napišite personaliziranu poruku i pošaljite je svima odjednom. Klijenti se vraćaju, a vi niste morali slati poruke ručno.
 
 #reaktivacija #klijenti #smsplatforma #automatizacija #digitalizacija #voxares

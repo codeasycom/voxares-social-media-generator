@@ -8,7 +8,10 @@
     "build": "node screenshot-all.mjs",
     "build:one": "node screenshot-one.mjs",
     "build:video": "node render-video.mjs",
-    "build:all": "npm run build && npm run build:video",
+    "build:stories": "node screenshot-stories.mjs",
+    "build:story": "node screenshot-story-one.mjs",
+    "build:story-video": "node render-story.mjs",
+    "build:all": "npm run build && npm run build:video && npm run build:stories && npm run build:story-video",
     "studio": "remotion studio remotion/index.ts"
   },
   "keywords": [],

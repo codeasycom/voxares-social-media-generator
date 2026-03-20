@@ -2,3 +2,5 @@ node_modules/
 dist/
 posts/*/image.png
 posts/*/video.mp4
+posts/*/story-image.png
+posts/*/story-video.mp4

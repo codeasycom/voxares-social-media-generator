@@ -1,6 +1,4 @@
-Podsjetnik 24h prije termina. Zahvala nakon posjeta. Praćenje nakon tjedan dana.
-
-Sve se šalje automatski, a vi samo definirate tko dobiva koju poruku i kada.
+Podsjetnik 24 sata prije termina, zahvala nakon posjeta i praćenje nakon tjedan dana. Sve se šalje automatski, a vi samo definirate tko dobiva koju poruku i kada.
 
 Želite vidjeti kako to radi? Link u opisu profila.
 

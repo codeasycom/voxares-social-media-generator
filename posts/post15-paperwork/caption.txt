@@ -1,7 +1,5 @@
-Papiri se gube. Rukopis je nečitljiv. Podaci se moraju ručno unositi.
+Papiri se gube, rukopis je nečitljiv, a podaci se moraju ručno unositi.
 
-S Voxaresom, klijenti ispunjavaju digitalne obrasce prije dolaska. Obrasci su prilagođeni vašem brendu i jednostavni za ispunjavanje.
-
-Manje administracije pri prijemu. Više vremena za ono što radite.
+S Voxaresom, klijenti ispunjavaju digitalne obrasce prije dolaska. Obrasci su prilagođeni vašem brendu i jednostavni za ispunjavanje. To znači manje administracije pri prijemu i više vremena za ono što radite.
 
 #digitalizacija #obrasci #automatizacija #klijenti #smsplatforma #voxares

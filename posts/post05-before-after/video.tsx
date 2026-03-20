@@ -312,7 +312,7 @@ const Post05BeforeAfter: React.FC = () => {
           <SideHeader
             side="after"
             label="Poslije"
-            title="Voxares radi umjesto vas"
+            title="Voxares vam olakšava posao"
             delay={FRAMES.afterLabel}
           />
           <div

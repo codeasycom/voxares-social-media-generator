@@ -2,6 +2,6 @@ Koliko vremena dnevno potrošite na ručno slanje podsjetnika?
 
 To je vrijeme koje bi moglo biti posvećeno onome što zaista znate raditi.
 
-S Voxaresom automatizirate podsjetnike, a klijenti sami potvrde dolazak bez vašeg sudjelovanja.
+S Voxaresom automatizirate podsjetnike, a klijenti mogu sami potvrditi dolazak putem SMS-a.
 
 #automatizacija #smspodsjetnici #digitalizacija #klijenti #termini #voxares

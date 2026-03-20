@@ -16,9 +16,15 @@ import {
   compositionConfig as post05Config,
 } from "../posts/post05-before-after/video";
 
+import {
+  Post02MorningRoutineStory,
+  compositionConfig as post02StoryConfig,
+} from "../posts/post02-morning-routine/story";
+
 export const Root: React.FC = () => {
   return (
     <>
+      {/* Feed compositions */}
       <Composition
         id="Post02MorningRoutine"
         component={Post02MorningRoutine}
@@ -50,6 +56,16 @@ export const Root: React.FC = () => {
         fps={post05Config.fps}
         width={post05Config.width}
         height={post05Config.height}
+      />
+
+      {/* Story compositions */}
+      <Composition
+        id="Post02MorningRoutineStory"
+        component={Post02MorningRoutineStory}
+        durationInFrames={post02StoryConfig.durationInFrames}
+        fps={post02StoryConfig.fps}
+        width={post02StoryConfig.width}
+        height={post02StoryConfig.height}
       />
     </>
   );

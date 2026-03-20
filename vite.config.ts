@@ -69,6 +69,18 @@ export default defineConfig({
                   // Full video render
                   command = "node";
                   args = ["render-video.mjs", slug];
+                } else if (mode === "story-image-static") {
+                  // Static story screenshot
+                  command = "node";
+                  args = ["screenshot-story-one.mjs", slug];
+                } else if (mode === "story-image-animated") {
+                  // Animated story last-frame still
+                  command = "node";
+                  args = ["render-story.mjs", slug, "--image-only"];
+                } else if (mode === "story-video") {
+                  // Full story video render
+                  command = "node";
+                  args = ["render-story.mjs", slug];
                 } else {
                   res.statusCode = 400;
                   res.end(JSON.stringify({ error: "Invalid mode" }));

@@ -13,12 +13,14 @@ interface Props {
       height: number;
     };
   };
+  hasStory?: boolean;
 }
 
 export const AnimatedCard: React.FC<Props> = ({
   slug,
   caption,
   compositionModule,
+  hasStory,
 }) => {
   const { compositionConfig } = compositionModule;
   const Component = compositionModule.default;
@@ -40,6 +42,7 @@ export const AnimatedCard: React.FC<Props> = ({
           </Suspense>
         </div>
         <span className="video-badge">VIDEO</span>
+        {hasStory && <span className="story-badge">STORY</span>}
       </div>
       <p className="label">{slug}</p>
       {caption && <div className="caption-preview">{caption}</div>}
